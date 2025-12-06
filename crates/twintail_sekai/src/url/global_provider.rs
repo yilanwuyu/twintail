@@ -43,21 +43,25 @@ impl UrlProvider for GlobalUrlProvider {
 
     fn assetbundle_info(
         &self,
-        _: &str,
+        host_hash: &str,
         asset_version: &str,
         _: &str,
         platform: &Platform,
     ) -> String {
         format!(
-            "https://assetbundle-info.urls-en.com{}/{}/os/{}",
+            "https://n-production-{}-assetbundle-info.sekai-en.com{}/{}/os/{}",
+            host_hash,
             urls::assetbundle::INFO,
             asset_version,
             platform.to_string()
         )
     }
 
-    fn assetbundle(&self, _: &str, assetbundle_path: &str) -> String {
-        format!("https://assetbundle.urls-en.com/{}", assetbundle_path)
+    fn assetbundle(&self, host_hash: &str, assetbundle_path: &str) -> String {
+        format!(
+            "https://n-production-{}-assetbundle.sekai-en.com/{}",
+            host_hash, assetbundle_path
+        )
     }
 
     fn assetbundle_path(
