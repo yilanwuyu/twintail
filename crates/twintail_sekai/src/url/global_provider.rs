@@ -99,7 +99,7 @@ impl UrlProvider for GlobalUrlProvider {
     }
 
     fn apphash(&self) -> String {
-        "https://raw.githubusercontent.com/mos9527/sekai-apphash/refs/heads/master/en/apphash.json"
+        "https://raw.githubusercontent.com/YangTheParrot/sekai-apphash/refs/heads/master/en/apphash.json"
             .into()
     }
 }
