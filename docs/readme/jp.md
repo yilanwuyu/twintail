@@ -10,6 +10,10 @@ twintailは現在、グローバル版と日本版のサーバーに対応して
 - twintailの基本的な使い方については[使用ガイド](../usage/jp.md)をご覧ください。
 - コマンドの例付きリストについては[コマンドリファレンス](../commands/jp.md)をご覧ください。
 
+> **注意:** twintailはアプリのバージョンとハッシュ値をインターネットから取得しなくなりました。ゲームサーバーと通信するコマンドでは、``--version`` と ``--hash`` でご自身で指定する必要があります。
+>
+> どちらの値も、公式の ``.apk``/``.xapk`` ファイルから ``twintail app-info <apkのパス>`` で取得できます。
+
 ## ビルド
 ### 依存関係
 - お使いのプラットフォーム向けの[Rust](https://www.rust-lang.org/tools/install)をインストールし、最新の状態であることを確認してください。
@@ -33,4 +37,4 @@ cargo test --workspace
 ```
 
 ## 謝辞
-- [mos9527](https://github.com/mos9527)氏: アプリバージョンとハッシュ値を取得している[sekai-apphash](https://github.com/mos9527/sekai-apphash)リポジトリを作成されました。
+- [mos9527](https://github.com/mos9527)氏: アプリバージョンとハッシュ値の取得に使用していた[sekai-apphash](https://github.com/mos9527/sekai-apphash)リポジトリを作成されました。

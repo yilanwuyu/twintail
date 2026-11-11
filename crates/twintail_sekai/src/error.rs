@@ -30,6 +30,9 @@ pub enum Error {
     #[error("missing url: {0}")]
     MissingUrl(String),
 
+    #[error("missing app info: {0} must be provided")]
+    MissingAppInfo(&'static str),
+
     #[error("multiple errors: {0}")]
     Multi(String),
 }

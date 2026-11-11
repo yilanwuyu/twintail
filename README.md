@@ -10,6 +10,10 @@ You can download the most recent version from the [releases page](https://github
 - Follow the [usage guide](/docs/usage/en.md) for a general explanation of how to use twintail.
 - Follow the [command reference](/docs/commands/en.md) for a list of commands with examples.
 
+> **Note:** twintail no longer pulls app versions and hashes from the internet. Every command that talks to the game servers requires you to pass them yourself with ``--version`` and ``--hash``.
+>
+> You can get both values from an official ``.apk``/``.xapk`` file with ``twintail app-info <path_to_apk>``.
+
 ## Building
 ### Dependencies
 - Install [Rust](https://www.rust-lang.org/tools/install) for your platform and ensure that it's up-to-date.
@@ -33,4 +37,4 @@ cargo test --workspace
 ```
 
 ## Acknowledgements
-- [mos9527](https://github.com/mos9527): Created the [sekai-apphash](https://github.com/mos9527/sekai-apphash) repository that app versions and hashes are pulled from.
+- [mos9527](https://github.com/mos9527): Created the [sekai-apphash](https://github.com/mos9527/sekai-apphash) repository, which twintail used to pull app versions and hashes from.

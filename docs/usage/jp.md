@@ -11,6 +11,23 @@
 
 グローバルサーバーからダウンロードする場合は、コマンドに``--server global``を追加する必要があります。
 
+## アプリバージョンとハッシュ
+twintailはゲームのアプリバージョンとアプリハッシュをインターネットから取得しなくなりました。
+
+ゲームサーバーと通信するすべてのコマンドでは、両方の値をご自身で指定する必要があります。
+```
+twintail fetch ab --version <app_version> --hash <app_hash> assetbundles
+```
+- ``<app_version>``をゲームのアプリバージョン（例：``4.1.0``）に置き換えてください
+- ``<app_hash>``をゲームのアプリハッシュ（例：``6c00c8cf-0f26-4b10-8a2f-bb2d5c40a7f7``）に置き換えてください
+
+どちらの値も、公式の``.apk``/``.xapk``ファイルから取得できます。
+```
+twintail app-info <apkのパス>
+```
+- twintailはそのファイル内で見つかったアプリバージョンとすべてのアプリハッシュを表示します。
+- ゲームが更新されると値が変わるため、再度このコマンドを実行し、新しい値を使用してください。
+
 ## アセットのダウンロード
 
 ### アセットバンドル
@@ -18,7 +35,7 @@
 
 twintailの``fetch ab``コマンドを使用してこれらのアセットをダウンロードできます。
 ```
-twintail fetch ab assetbundles
+twintail fetch ab --version <app_version> --hash <app_hash> assetbundles
 ```
 - これにより、最新のアセットバージョンのすべてのアセットが``assetbundles``という名前のフォルダにダウンロードされます。
 - アセットを別の場所に保存したい場合は、``assetbundles``を希望の保存先パスに置き換えてください。
@@ -30,7 +47,7 @@ Suitemasterファイルは、アクティブなイベントやキャラクター
 
 twintailの``fetch suite``コマンドを使用してこれらのファイルをダウンロードできます。
 ```
-twintail fetch suite suitemaster_files
+twintail fetch suite --version <app_version> --hash <app_hash> suitemaster_files
 ```
 - これにより、最新のアセットバージョンのすべてのsuitemasterファイルが``suitemaster_files``という名前のフォルダにダウンロードされます。
 - ファイルを別の場所に保存したい場合は、``suitemaster_files``を希望の保存先パスに置き換えてください。
@@ -42,7 +59,7 @@ twintail fetch suite suitemaster_files
 
 twintailの``fetch ab-info``コマンドを使用してこのファイルをダウンロードできます。
 ```
-twintail fetch ab-info
+twintail fetch ab-info --version <app_version> --hash <app_hash>
 ```
 - これにより、コマンドを実行した場所に最新のアセットバージョンの名前（例：``4.1.0.10.json``）を持つ新しい``.json``ファイルが作成されます。
 
@@ -64,7 +81,7 @@ twintail fetch ab-info
 
 twintailの``fetch save``コマンドを使用してこのファイルをダウンロードできます。
 ```
-twintail fetch save --id <transfer_id> --password <transfer_password>
+twintail fetch save --version <app_version> --hash <app_hash> --id <transfer_id> --password <transfer_password>
 ```
 - ``<transfer_id>``と``<transfer_password>``を、上記で取得した値に置き換えてください。
 

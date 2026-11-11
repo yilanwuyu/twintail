@@ -17,11 +17,11 @@ use crate::{Error, color, progress::ProgressBar, strings};
 pub struct SuiteArgs {
     /// The version of the game app get the suitemaster files for
     #[arg(short, long)]
-    pub version: Option<String>,
+    pub version: String,
 
     /// The app hash to get the suitemaster files for
     #[arg(long)]
-    pub hash: Option<String>,
+    pub hash: String,
 
     /// The device platform to get the suitemaster files for
     #[arg(short, long, value_enum, default_value_t = Platform::Android)]
@@ -113,8 +113,8 @@ pub async fn fetch_suite(args: SuiteArgs) -> Result<(), Error> {
         .retry(args.retry)
         .decrypt(!args.encrypt)
         .pretty_json(!args.compact)
-        .map(args.hash, |config, hash| config.hash(hash))
-        .map(args.version, |config, version| config.version(version))
+        .hash(args.hash)
+        .version(args.version)
         .map(args.concurrent, |config, concurrency| {
             config.concurrency(concurrency)
         })

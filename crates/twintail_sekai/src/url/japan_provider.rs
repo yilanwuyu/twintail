@@ -98,9 +98,4 @@ impl UrlProvider for JapanUrlProvider {
     fn user_suite(&self, user_id: usize) -> String {
         format!("{}{}/{}", self.hosts.game, urls::game::USER_SUITE, user_id)
     }
-
-    fn apphash(&self) -> String {
-        "https://raw.githubusercontent.com/YangTheParrot/sekai-apphash/refs/heads/master/jp/apphash.json"
-            .into()
-    }
 }

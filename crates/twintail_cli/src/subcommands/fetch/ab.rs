@@ -22,7 +22,7 @@ use crate::{Error, color, progress::ProgressBar, strings};
 pub struct AbArgs {
     /// The version of the game app to get the assetbundles for
     #[arg(short, long)]
-    pub version: Option<String>,
+    pub version: String,
 
     /// The version of the assets to get. Uses the most recent if not provided
     #[arg(short, long)]
@@ -30,7 +30,7 @@ pub struct AbArgs {
 
     /// The hash of the game app to get the assetbundles for
     #[arg(long)]
-    pub hash: Option<String>,
+    pub hash: String,
 
     /// Part of the URL used to download the assetbundles from. Uses the most recent if not provided
     #[arg(long)]
@@ -180,8 +180,8 @@ pub async fn fetch_ab(args: AbArgs) -> Result<(), Error> {
         .server(args.server)
         .retry(args.retry)
         .decrypt(!args.encrypt)
-        .map(args.hash, |config, hash| config.hash(hash))
-        .map(args.version, |config, version| config.version(version))
+        .hash(args.hash)
+        .version(args.version)
         .map(args.concurrent, |config, concurrency| {
             config.concurrency(concurrency)
         })

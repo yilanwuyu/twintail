@@ -10,22 +10,28 @@ twintail --help
 ## ``fetch ab``
 ゲームのアセットをダウンロードします。
 
+以下のすべての例では、ゲームのアプリバージョンとアプリハッシュを``--version``と``--hash``で指定する必要があります。
+これらの値は自動取得されません。[``app-info``](#app-info)で``.apk``/``.xapk``ファイルから取得できます。
+```
+twintail app-info game.xapk
+```
+
 ### 例
 - 日本サーバーからすべてのアセットをダウンロードし、``bundles``というフォルダに保存します。
   ```
-  twintail fetch ab bundles
+  twintail fetch ab --version <app_version> --hash <app_hash> bundles
   ```
 - グローバルサーバーから、名前に``scenario``を含むアセットのみをダウンロードします。
   ```
-  twintail fetch ab --filter "scenario" --server global assets
+  twintail fetch ab --version <app_version> --hash <app_hash> --filter "scenario" --server global assets
   ```
 - [アセットバンドル情報ファイル](#fetch-ab-info)を使用して日本サーバーからアセットをダウンロードします。
   ```
-  twintail fetch ab --info 4.0.5.10.json --no-update bundles
+  twintail fetch ab --version <app_version> --hash <app_hash> --info 4.0.5.10.json --no-update bundles
   ```
 - 最新のアセットバージョンと[アセットバンドル情報ファイル](#fetch-ab-info)の差分のみをダウンロードします。
   ```
-  twintail fetch ab --info 4.0.5.10.json bundles
+  twintail fetch ab --version <app_version> --hash <app_hash> --info 4.0.5.10.json bundles
   ```
 
 ## ``fetch ab-info``
@@ -34,7 +40,7 @@ twintail --help
 ### 例
 - ゲームの全アセットのリストをダウンロードし、``asset_version.json``として保存します（asset_versionは最新のアセットバージョン）。
   ```
-  fetch ab-info
+  twintail fetch ab-info --version <app_version> --hash <app_hash>
   ```
 
 ## ``fetch suite``
@@ -43,11 +49,11 @@ Suitemasterファイルをダウンロードします。
 ### 例
 - 日本サーバーからSuitemasterファイルをダウンロードし、``suite``というフォルダに保存します。
   ```
-  twintail fetch suite suite
+  twintail fetch suite --version <app_version> --hash <app_hash> suite
   ```
 - 日本サーバーから暗号化されたSuitemasterファイルをダウンロードし、``suite_encrypted``というフォルダに保存します。
   ```
-  twintail fetch suite --encrypt suite_encrypted
+  twintail fetch suite --version <app_version> --hash <app_hash> --encrypt suite_encrypted
   ```
 
 ## ``fetch save``
@@ -56,12 +62,23 @@ Suitemasterファイルをダウンロードします。
 ### 例
 - 日本サーバーからプレイヤーのセーブデータをダウンロードします。
   ```
-  twintail fetch save --id <transfer_id> --password <transfer_password>
+  twintail fetch save --version <app_version> --hash <app_hash> --id <transfer_id> --password <transfer_password>
   ```
   - ``<transfer_id>``と``<transfer_password>``は、引継ぎ開始時にゲームから提供された値です。
 - グローバルサーバーからプレイヤーのセーブデータをダウンロードし、``saves``というフォルダに保存します。
   ```
-  twintail fetch save --id <transfer_id> --password <transfer_password> --server global
+  twintail fetch save --version <app_version> --hash <app_hash> --id <transfer_id> --password <transfer_password> --server global
+  ```
+
+## ``app-info``
+ゲームの``.apk``/``.xapk``ファイルからアプリバージョンとアプリハッシュを抽出します。
+
+``--version``と``--hash``に指定する値はこれらです。
+
+### 例
+- ``game.xapk``内のゲームファイルのアプリバージョンとハッシュを表示します。
+  ```
+  twintail app-info game.xapk
   ```
 
 ## ``encrypt ab``
